@@ -3,12 +3,14 @@ import Zone from '../helpers/zone';
 import io from 'socket.io-client';
 import Dealer from '../helpers/dealer';
 import $ from 'jquery';
-import Realm from '../helpers/realm'
+import Realm from '../helpers/realm';
+import Player from '../helpers/player'
 
 function villainCardFactory(cardJson) {
+    console.log(this)
     switch (cardJson.type) {
         case "Ally":
-            cards.Ally(scene)
+            // cards.Ally(cardJson.)
             break;
         case "Item":
             break;
@@ -42,10 +44,11 @@ constructor() {
     this.otherPlayers = [];
     this.isPlayerA = false;
     this.opponentCards = [];
+    this.currentTurn = true;
 }
 
 preload() {
-    let currGame = this
+    let currGame = this //Use this in button press and zonedrop functions
 
     //TODO card factory
     let villainCards = this.cache.json.get('CaptainHook').villainDeck
@@ -63,12 +66,13 @@ preload() {
             currGame.fateCards.push(card.name);
         }
     });
-
+    villainCardFactory(fateCards)
 }
 
 create() {
     this.maxWidth = window.innerWidth;
     this.maxHeight = window.innerHeight;
+    let currGame = this
 
     this.socket = io('http://localhost:3000');
 
@@ -93,8 +97,8 @@ create() {
             let sprite = gameObject.textureKey;
             self.opponentCards.shift().destroy();
             self.dropZone.data.values.cards++;
-            let card = new Card(self);
-            card.render(((self.dropZone.x - 350) + (self.dropZone.data.values.cards * 50)), (self.dropZone.y), sprite).disableInteractive();
+            // let card = new Card(self);
+            // card.render(((self.dropZone.x - 350) + (self.dropZone.data.values.cards * 50)), (self.dropZone.y), sprite).disableInteractive();
         }
     })
 
@@ -125,22 +129,42 @@ create() {
     this.input.on('dragstart', function (pointer, gameObject) {
         gameObject.setTint(0xff69b4);
         self.children.bringToTop(gameObject);
+        console.log(gameObject.currZone)
+        if(gameObject.currZone){
+
+        }
+        //TODO: remove card from zone
     })
 
     this.input.on('dragend', function (pointer, gameObject, dropped) {
         gameObject.setTint();
         if (!dropped) {
+            //TODO: tween object back to drop zone
             gameObject.x = gameObject.input.dragStartX;
             gameObject.y = gameObject.input.dragStartY;
         }
     })
 
     this.input.on('drop', function (pointer, gameObject, dropZone) {
-        console.log(gameObject);
-        dropZone.data.values.allies.push(gameObject);
+        //Switch check dropzone
+        console.log(currGame); //InputPlugin
+        //TODO: disableInteractive drop zones once the turn is over
+        // if(!this.currentTurn) {
+        //     return;
+        // }
+
+        switch(dropZone.name){ //Name is the render
+            case "allyZone":
+                gameObject.y = dropZone.y + (dropZone.data.values.allies.length * 25);
+                dropZone.data.values.allies.push(gameObject);
+                break;
+            case "heroZone":
+                gameObject.y = dropZone.y - (dropZone.data.values.heroes.length * 25);
+                dropZone.data.values.heroes.push(gameObject);
+                break;
+        }
         gameObject.x = dropZone.x;
-        gameObject.y = (dropZone.y - 750);// + (dropZone.data.values.cards * 50);
-        gameObject.disableInteractive();
+        // gameObject.disableInteractive();
         self.socket.emit('cardPlayed', gameObject, self.isPlayerA);
     })
 

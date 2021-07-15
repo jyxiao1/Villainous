@@ -7,7 +7,7 @@ export default class Card /*extends Phaser.GameObjects.Image*/{ //TODO extends g
         this.fullHeight = 0
         this.unfocusedWidth = scene.maxWidth * 0.115
         this.unfocusedHeight = 0
-
+        this.currZone = -1
 
         this.render = (x, y, sprite) => {
             this.fullWidth = sprite.width / 2

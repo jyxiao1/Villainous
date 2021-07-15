@@ -51,8 +51,6 @@ function actionsFactory(actionString){
 }
 
 class Location {
-    _allyZone;
-    _heroZone;
     constructor(scene, upperActions, lowerActions, renderIndex) {
         this._allies = [];
         this._heroes = [];
@@ -81,8 +79,8 @@ class Location {
     }
 
     render(scene) {
-        console.log(this);
-        console.log(scene);
+        // console.log(this); This is Location
+        // console.log(scene);
         let xPos = 0;
         switch(this._renderIndex)
         {
@@ -105,6 +103,8 @@ class Location {
 
         // Ally Zone
         this._allyZone = scene.add.zone(xPos, scene.maxHeight/2 + this._height, this._width, this._height).setRectangleDropZone(this._width, this._height);
+        this._allyZone.setName(this._renderIndex);
+        console.log(this._allyZone.name)
         let allyZoneOutline = scene.add.graphics();
         allyZoneOutline.lineStyle(4, 0x58a6ff);
         allyZoneOutline.strokeRoundedRect(this._allyZone.x - this._allyZone.input.hitArea.width / 2,
@@ -115,6 +115,7 @@ class Location {
 
         // Hero Zone
         this._heroZone = scene.add.zone(xPos, scene.maxHeight/2 - this._height, this._width, this._height).setRectangleDropZone(this._width, this._height);
+        this._heroZone.setName(this._renderIndex)
         let heroZoneOutline = scene.add.graphics();
         heroZoneOutline.lineStyle(4, 0xb8a6ff);
         heroZoneOutline.strokeRoundedRect(this._heroZone.x - this._heroZone.input.hitArea.width / 2,
