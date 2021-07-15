@@ -4,7 +4,7 @@
   "description": "An online version of the board game Villainous, including expansion packs etc.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server-improved.js"
+    "start": "nodemon server/server-improved.js"
   },
   "author": "",
   "license": "ISC",
