@@ -1,4 +1,4 @@
-import Card from './card';
+import Card from './card.js';
 import Phaser from 'phaser'
 export default class Hand {
     constructor(scene) {

@@ -2,11 +2,15 @@
   "name": "npm",
   "version": "1.1.2",
   "description": "A Phaser 3 Project Template",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack/prod.js ",
-    "start": "webpack-dev-server --config webpack/base.js --open"
+    "build": "parcel build ./src/index.html --public-url ./ ",
+    "watch": "parcel watch ./src/index.html",
+    "start": "webpack-dev-server --config webpack/base.js --open",
+    "clean": "rm -v dist/*",
+    "test": "npx eslint src"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/photonstorm/phaser3-project-template.git"

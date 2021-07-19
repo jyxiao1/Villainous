@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import Phaser from 'phaser'
 export default class PlayerSelect extends Phaser.Scene {
     constructor() {
         super('PlayerSelect');

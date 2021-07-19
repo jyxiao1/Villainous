@@ -1,5 +1,5 @@
-import Card from './card';
-import Phaser from 'phaser'
+import Card from './card.js';
+// import Phaser from 'phaser'
 export default class Dealer {
     constructor(scene, cards) {
         this.dealCards = () => {
@@ -14,8 +14,8 @@ export default class Dealer {
             // }
             cards = Phaser.Math.RND.shuffle(cards);
             for (let i = 0; i < 4; i++) {
-                let playerCard = new Card(scene);
-                playerCard.render(475 + (i * 200), 650, cards.pop());
+                // let playerCard = new Card(scene);
+                // playerCard.render(475 + (i * 200), 650, cards.pop());
             }
         }
     }

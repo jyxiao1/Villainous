@@ -131,38 +131,43 @@
         [{
             "name": "John",
             "type": "Hero",
+            "strength": "2",
             "numInDeck": 1,
             "sprite": "John.png"
         },{
             "name": "Michael",
             "type": "Hero",
-            "strength": "2",
+            "strength": "1",
             "numInDeck": 1,
             "sprite": "Michael.png"
         },{
             "name": "Peter Pan",
             "type": "Hero",
+            "strength": "8",
             "numInDeck": 1,
             "sprite": "Peter_Pan.png"
         },{
             "name": "Tick Tock",
             "type": "Hero",
-            "cost": "4",
+            "strength": "5",
             "numInDeck": 1,
             "sprite": "Tick_Tock.png"
         },{
             "name": "Tinker Bell",
             "type": "Hero",
+            "strength": "2",
             "numInDeck": 1,
             "sprite": "Tinker_Bell.png"
         },{
             "name": "Wendy",
             "type": "Hero",
+            "strength": "3",
             "numInDeck": 1,
             "sprite": "Wendy.png"
         },{
             "name": "Lost Boys",
-            "type": "Condition",
+            "type": "Hero",
+            "strength": "2",
             "numInDeck": 2,
             "sprite": "Lost_Boys.png"
         },{

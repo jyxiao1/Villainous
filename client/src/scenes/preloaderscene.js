@@ -1,4 +1,4 @@
-import Phaser from 'phaser';
+import Phaser from 'phaser'
 export default class Preloader extends Phaser.Scene {
     constructor() {
         super('Preloader');
@@ -88,8 +88,15 @@ export default class Preloader extends Phaser.Scene {
         );
         // console.log(fateCards)
 
+        this.load.image('fateBack', "src/assets/villains/Captain Hook/Fate_Back.png");
+        this.load.image('villainBack', "src/assets/villains/Captain Hook/Villain_Back.png");
 
-        this.load.image('hookRealm', 'src/assets/villains/Captain Hook/realm.jpg')
+        // this.load.spritesheet('idle_aggressive', "src/assets/villains/Captain Hook/idle_aggressive.png", {frameWidth: 92, frameHeight: 88});
+        // this.load.spritesheet('walk_aggressive', "src/assets/villains/Captain Hook/walk_aggressive.png", {frameWidth: 92, frameHeight: 88});
+        this.load.atlas('mover', 'src/assets/villains/Captain Hook/mover.png', 'src/assets/villains/Captain Hook/mover.json');
+
+        this.load.image('hookRealm', 'src/assets/villains/Captain Hook/realm.jpg');
+        this.load.atlas('flares', 'src/assets/flares.png','src/assets/flares.json');
     }
 
     init () {

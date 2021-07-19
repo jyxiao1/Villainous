@@ -19,6 +19,10 @@ class Action {
         //start the emitter
     }
 
+    setSelectable(){
+
+    }
+
 }
 
 export class GainPower extends Action {

@@ -1,5 +1,6 @@
-import Phaser from 'phaser'
-
+// import Phaser from 'phaser'
+import Mover from "./mover";
+import Realm from "./realm";
 export default class Player {
     constructor(scene){
         this.power = 0
@@ -19,7 +20,31 @@ export default class Player {
         this.winCondition = null
         this.currLocation = 0
         this.board = null
+        this.lastMove = "" // Records the last move taken for triggering a condition, this can be refactored into a
+                                // list which removes each item after a certain amount of time
+        this.mover = new Mover(scene, '');
+        this.realm = new Realm(scene);
     }
+
+    startTurn(scene){
+        // this.mover.setInteractive(); // Allow the piece to be moved
+        let allowedLocations = this.mover.validMoves(); // array of locations
+        allowedLocations.forEach(location => {
+            location = this.realm.locationAt(location);
+            if(location && !location._isLocked){
+                location.setSelectable(true);
+                console.log("Selectable");
+                let self = this;
+                location.on('pointerdown', function () {
+                    console.log("Location selected")
+                    self.mover.walk(scene, location.x);
+                    self.realm.locations.forEach(location => location.setSelectable(false));
+                    //TODO: Execute check for actions
+                });
+            }
+        });
+    }
+
 
     drawCard(){
         if (this.villainDeck.length === 0) {
@@ -86,5 +111,9 @@ export default class Player {
         }
 */
     }
+
+}
+
+class TokenZone {
 
 }

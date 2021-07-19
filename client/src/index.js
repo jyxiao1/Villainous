@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
-import GameScene from './scenes/gamescene';
-import PlayerSelect from './scenes/playerselectscene'
-import config from './config/config';
-import Boot from './scenes/bootscene';
-import Preloader from './scenes/preloaderscene';
+import GameScene from './scenes/gamescene.js';
+import PlayerSelect from './scenes/playerselectscene.js';
+import config from './config/config.js';
+import Boot from './scenes/bootscene.js';
+import Preloader from './scenes/preloaderscene.js';
 
 document.body.style.margin = "0px";
 document.body.style.overflow = "hidden";
@@ -42,6 +42,12 @@ const game = new Game();
 window.addEventListener('resize', () => {
     game.scale.resize(window.innerWidth, window.innerHeight);
     console.log("Resized!");
+    //VILLAIN_DECK = scene.maxWidth/12;
+    //LOCATION_0 = scene.maxWidth*(1/6 + 0.1734*2/3 + 0.1226/2);
+    //LOCATION_1 = scene.maxWidth*(1/6 + 0.3825*2/3 + 0.1226/2);
+    //LOCATION_2 = scene.maxWidth*(1/6 + 0.5903*2/3 + 0.1226/2);
+    //LOCATION_3 = scene.maxWidth*(1/6 + 0.7994159928122192*2/3 + 0.1226/2);
+    //FATE_DECK = scene.maxWidth*11/12;
 });
 // class MyGame extends Phaser.Scene
 // {
