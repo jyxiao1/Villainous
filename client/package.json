@@ -45,5 +45,13 @@
     "npm",
     "help",
     "init"
-  ]
+  ],
+  "compress": {
+    "brotli": {
+      "enabled": false
+    },
+    "gzip": {
+      "enabled": false
+    }
+  }
 }
